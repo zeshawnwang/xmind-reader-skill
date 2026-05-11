@@ -1,0 +1,80 @@
+{
+  "name": "Xmind-Read-Skill",
+  "version": "1.5",
+  "description": "XMind 内容读取技能 - 支持 XMind 8 (XML) 和 XMind 9+ (JSON) 两种格式，提取层级结构和标记信息",
+  "author": "zeshawnwang",
+  "updated": "2026-05-11",
+  "license": "MIT",
+  "tags": ["xmind", "xmind8", "xmind9", "mindmap", "xml", "json", "parsing", "file-processing"],
+  "requirements": {
+    "python": "3.6+",
+    "shell": "bash, unzip, python3",
+    "third_party": {
+      "xmindparser": "可选，需要 pip install xmindparser",
+      "xmind": "可选，需要 pip install xmind"
+    }
+  },
+  "features": [
+    "支持 Shell 和 Python 两种实现方式",
+    "自动兼容 XMind 8 (XML) 和 XMind 9+ (JSON) 格式",
+    "自动保护原文件（复制后操作）",
+    "完整的错误处理和临时文件清理",
+    "支持树形和 Markdown 格式输出",
+    "跨平台兼容（macOS, Linux, Windows）",
+    "支持第三方库方式（xmindparser/xmind）- ⚠️ 不推荐"
+  ],
+  "compatibility": {
+    "xmind8": true,
+    "xmind9_plus": true
+  },
+  "implementation_modes": {
+    "recommended": [
+      {
+        "mode": "Python 实现",
+        "file": "scripts/read_xmind.py",
+        "advantages": ["零依赖", "完全跨平台", "高可移植性", "完全控制"]
+      },
+      {
+        "mode": "Shell 实现",
+        "file": "scripts/read_xmind_shell.sh",
+        "advantages": ["轻量级", "无需 Python 环境"]
+      }
+    ],
+    "not_recommended": [
+      {
+        "mode": "xmindparser 库",
+        "dependency": "pip install xmindparser",
+        "disadvantages": ["需要安装依赖", "可移植性降低", "依赖管理复杂性"],
+        "advantage": "不生成临时文件"
+      },
+      {
+        "mode": "xmind 库",
+        "dependency": "pip install xmind",
+        "disadvantages": ["需要安装依赖", "可移植性降低", "依赖管理复杂性"],
+        "advantage": "不生成临时文件"
+      }
+    ]
+  },
+  "usage": {
+    "shell": {
+      "command": "./scripts/read_xmind_shell.sh <file.xmind> [format]",
+      "formats": ["tree", "markdown", "raw"]
+    },
+    "python": {
+      "command": "python3 scripts/read_xmind.py <file.xmind> [format]",
+      "import": "from scripts.read_xmind import read_xmind_quick"
+    },
+    "third_party": {
+      "xmindparser": "python3 scripts/read_xmind_xmindparser.py <file.xmind> [format] - 需要 pip install xmindparser",
+      "xmind": "python3 scripts/read_xmind_xmindlib.py <file.xmind> [format] - 需要 pip install xmind"
+    }
+  },
+  "files": {
+    "SKILL.md": "技能说明文档（包含所有实现方式）",
+    "scripts/read_xmind_shell.sh": "Shell 实现脚本（推荐）",
+    "scripts/read_xmind.py": "Python 实现脚本（强烈推荐）",
+    "scripts/read_xmind_xmindparser.py": "xmindparser 库实现（不推荐）",
+    "scripts/read_xmind_xmindlib.py": "xmind 库实现（不推荐）",
+    "references/example.md": "使用示例"
+  }
+}
